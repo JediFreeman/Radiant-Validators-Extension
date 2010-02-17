@@ -2,7 +2,7 @@ require 'active_record_validation_extender'
 
 module UserValidationExtender
   def self.included(base)
-    base.class_eval {
+    base.class_eval do
       base.clear_validations      
       validates_uniqueness_of :login, :message => 'login already in use', :name => :user_login_uniqueness
 
@@ -19,7 +19,6 @@ module UserValidationExtender
       validates_length_of :email, :maximum => 255, :allow_nil => true, :message => '{{count}}-character limit', :name => :user_email_length
       
       validates_numericality_of :id, :only_integer => true, :allow_nil => true, :message => 'must be a number', :name => :user_id_numericality
-    }
-    
+    end    
   end
 end

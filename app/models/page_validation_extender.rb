@@ -2,7 +2,7 @@ require 'active_record_validation_extender'
 
 module PageValidationExtender
   def self.included(base)
-    base.class_eval {
+    base.class_eval do
       base.clear_validations      
       validates_presence_of :title, :slug, :breadcrumb, :status_id, :message => 'required', :name => :page_title_presence
 
@@ -14,8 +14,7 @@ module PageValidationExtender
       validates_numericality_of :id, :status_id, :parent_id, :allow_nil => true, :only_integer => true, :message => 'must be a number', :name => :page_numericality
 
       # no need to set name for this, just override the valid_class_name function to replace this behavior
-      validate :valid_class_name 
-    }
-    
+      validate :valid_class_name
+    end
   end
 end
