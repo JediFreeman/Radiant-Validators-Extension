@@ -1,8 +1,5 @@
-# Uncomment this if you reference any of your controllers in activate
-# require_dependency 'application_controller'
-
 class RadiantValidatorsExtension < Radiant::Extension
-  version "1.0"
+  version "#{File.read(File.expand_path(File.dirname(__FILE__)) + '/VERSION')}"
   description "Extension to allow overriding of built-in validators in Radiant"
   url "http://github.com/JediFreeman/Radiant-Validators-Extension"
 
