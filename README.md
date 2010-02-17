@@ -1,23 +1,26 @@
-= Radiant Validators
+Radiant Validators
+==================
 
 This [Radiant CMS][1] extension allows extension developers to easily override the validators built into Radiant's models. This is done 
 by adding new functions to the ActiveRecord class to clear validations, and remove validations based on a name. All built-in Radiant 
 model validations are cleared and redefined in this extension with names set to allow other extensions to remove them easily.
 
-= INSTALLATION
+INSTALLATION
+============
 
 1: Install the extension files
 
-  Automated Installation:
-  ./script/extension install radiant_validators
-  
-  Manual Installation:
-  cd ./vendor/extensions
-  git clone git://github.com/JediFreeman/Radiant-Validators-Extension.git
+    Automated Installation:
+    ./script/extension install radiant_validators
+
+    Manual Installation:
+    cd ./vendor/extensions
+    git clone git://github.com/JediFreeman/Radiant-Validators-Extension.git
 
 2: Restart the server
 
-= HOW TO USE
+HOW TO USE
+==========
 
 To override a validator, it is pretty straight forward. Take a look at the example below that overrides the Page model slug format 
 validator to allow apostrophes.
@@ -25,27 +28,28 @@ validator to allow apostrophes.
 1: In your extension lib directory, create an extender file for the model you wish to override (for example, to override the Page model, 
 create page_extender.rb) and add the following:
 
-module PageExtender
-  def self.included(base)
-    base.class_eval {
-      # remove the existing validation for slug format
-      base.remove_validation :page_slug_format
+    module PageExtender
+      def self.included(base)
+        base.class_eval {
+          # remove the existing validation for slug format
+          base.remove_validation :page_slug_format
 
-      # add a new validator with a slightly different regex to allow apostrophes
-      validates_format_of :slug, :with => %r{^([-_.A-Za-z0-9']*|/)$}, :message => 'invalid format', :name => :page_slug_format
-    }
-  end
-end
+          # add a new validator with a slightly different regex to allow apostrophes
+          validates_format_of :slug, :with => %r{^([-_.A-Za-z0-9']*|/)$}, :message => 'invalid format', :name => :page_slug_format
+        }
+      end
+    end
 
 2: In your main extension file activate method, include your extender on the Page model:
 
-def activate
-  Page.send :include, PageExtender
-end
+    def activate
+      Page.send :include, PageExtender
+    end
 
 3: Restart the server
 
-= ADDITIONAL INFORMATION
+ADDITIONAL INFORMATION
+======================
 
 To see a list of validator names, take a look in radiant_validators/app/models/*_validation_extender.rb files.
 
@@ -54,7 +58,8 @@ be overridden by creating a new function in your extender.
 
 You can verify the validators on a model by loading up the script/console and calling <Model>.validate (ie, Page.validate). You will get a list of validators and you should be able to see the :name setting for each one.
 
-= QUESTIONS OR ISSUES
+QUESTIONS OR ISSUES
+===================
 
 Please use the Issues panel on the [GitHub Project Page][2] to report any issues.
 
