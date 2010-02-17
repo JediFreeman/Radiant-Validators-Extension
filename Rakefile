@@ -4,7 +4,7 @@ require 'rake/rdoctask'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "radiant-validators-extension"
+    gem.name = "radiant-radiant_validators-extension"
     gem.summary = %Q{Radiant Validators Extension for Radiant CMS}
     gem.description = %Q{Describe your extension here}
     gem.email = "your email"
