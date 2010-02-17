@@ -1,9 +1,11 @@
 Radiant Validators
 ==================
 
-This [Radiant CMS][1] extension allows extension developers to easily override the validators built into Radiant's models. This is done 
-by adding new functions to the ActiveRecord class to clear validations, and remove validations based on a name. All built-in Radiant 
-model validations are cleared and redefined in this extension with names set to allow other extensions to remove them easily.
+This [Radiant CMS][1] extension allows extension developers to easily override the validators 
+built into Radiant's models. This is done by adding a new method to the ActiveRecord class to 
+clear validations, and methods to remove validations based on validator name. All built-in 
+Radiant model validations are cleared and redefined in this extension with names set to allow 
+other extensions to remove them easily.
 
 INSTALLATION
 ============
@@ -22,11 +24,11 @@ INSTALLATION
 HOW TO USE
 ==========
 
-To override a validator, it is pretty straight forward. Take a look at the example below that overrides the Page model slug format 
-validator to allow apostrophes.
+To override a validator, it is pretty straight forward. Take a look at the example below that 
+overrides the Page model slug format validator to allow apostrophes.
 
-1: In your extension lib directory, create an extender file for the model you wish to override (for example, to override the Page model, 
-create page_extender.rb) and add the following:
+1: In your extension lib directory, create an extender file for the model you wish to override 
+(for example, we are overridding the Page model, so we create page_extender.rb) and add the following:
 
     module PageExtender
       def self.included(base)
@@ -53,10 +55,11 @@ ADDITIONAL INFORMATION
 
 To see a list of validator names, take a look in radiant_validators/app/models/*_validation_extender.rb files.
 
-custom validator functions (defined with 'validate :function_name') are not in the scope of this extension, as those can already easily 
-be overridden by creating a new function in your extender.
+custom validator functions (defined with 'validate :function_name') are not in the scope of this extension, 
+as those can already easily be overridden by creating a new function in your extender.
 
-You can verify the validators on a model by loading up the script/console and calling <Model>.validate (ie, Page.validate). You will get a list of validators and you should be able to see the :name setting for each one.
+You can verify the validators on a model by loading up the script/console and calling <Model>.validate 
+(ie, Page.validate). You will get a list of validators and you should be able to see the :name setting for each one.
 
 QUESTIONS OR ISSUES
 ===================
