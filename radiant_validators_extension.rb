@@ -4,7 +4,7 @@
 class RadiantValidatorsExtension < Radiant::Extension
   version "1.0"
   description "Extension to allow overriding of built-in validators in Radiant"
-  url "http://yourwebsite.com/radiant_validators"
+  url "http://github.com/JediFreeman/Radiant-Validators-Extension"
 
   def activate
     Page.send :include, PageValidationExtender
