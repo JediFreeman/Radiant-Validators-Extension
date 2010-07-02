@@ -24,10 +24,12 @@ it is possible that another extension will create some custom validators on radi
 they will get removed when this extension loads and resets the validators. To do so, edit your 
 config/environment.rb to load Help first:
 
-Radiant::Initializer.run do |config|
+Radiant::Initializer.run do |config|  
 ...
-  config.extensions = [:radiant_validators, :all]
-...
+
+        config.extensions = [:radiant_validators, :all]
+
+...  
 end
 
 3: Restart the server
