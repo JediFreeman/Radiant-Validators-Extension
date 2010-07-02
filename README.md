@@ -19,7 +19,18 @@ INSTALLATION
     cd ./vendor/extensions
     git clone git://github.com/JediFreeman/Radiant-Validators-Extension.git
 
-2: Restart the server
+2: Once installed, you need to ensure the application will load this extension first. If it does not, 
+it is possible that another extension will create some custom validators on radiant core models and 
+they will get removed when this extension loads and resets the validators. To do so, edit your 
+config/environment.rb to load Help first:
+
+Radiant::Initializer.run do |config|
+...
+  config.extensions = [:radiant_validators, :all]
+...
+end
+
+3: Restart the server
 
 HOW TO USE
 ==========
