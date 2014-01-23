@@ -14,10 +14,11 @@ class RadiantValidatorsExtension < Radiant::Extension
   end
 
   def activate
-    Page.send     :include, PageValidationExtender
-    Layout.send   :include, LayoutValidationExtender
-    PagePart.send :include, PagePartValidationExtender
-    Snippet.send  :include, SnippetValidationExtender
-    User.send     :include, UserValidationExtender
+    Page.send       :include, PageValidationExtender
+    PageField.send  :include, PageFieldValidationExtender
+    Layout.send     :include, LayoutValidationExtender
+    PagePart.send   :include, PagePartValidationExtender
+    Snippet.send    :include, SnippetValidationExtender
+    User.send       :include, UserValidationExtender
   end
 end
